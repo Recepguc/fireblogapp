@@ -1,26 +1,23 @@
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import React from 'react'
-import {BrowserRouter,Routes,Route} from "react-router-dom"
-import Navbar from "../compenents/Navbar"
-import Login from "../pages/Login"
-import Dashboard from "../pages/Dashboard"
-import About from "../pages/About"
-import Details from "../pages/Details"
+import Dashboard from '../pages/Dashboard'
+import Login from '../pages/Login'
+import Register from '../pages/Register'
+import Navbar from '../compenents/Navbar'
+import PrivateRouter from './PrivateRouter'
 
-const Approuter = () => {
-  return (
-    <div>
-        <BrowserRouter>
-            <Navbar/>
+const AppRouter = () => {
+    return (
+        <Router>
+            <Navbar />
             <Routes>
-                <Route path="/" element={<Login/>}/>
-                <Route path="/dashboard" element={<Dashboard/>}/>
-                <Route path="/about" element={<About/>}/>
-            <Route path="/details" element={<Details/>}/>
+                <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
+                
             </Routes>
-        </BrowserRouter>
-
-    </div>
-  )
+        </Router>
+    );
 }
 
-export default Approuter
+export default AppRouter;
