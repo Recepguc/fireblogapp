@@ -7,14 +7,27 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import google from "../assets/google.png";
 import "./LoginRegister.css"
+import  {useState} from "react";
+import { createUser } from "../helpers/Firebase";
+import { useNavigate } from "react-router-dom";
 
 export default function SimpleContainer() {
+  const [email, setEmail] = useState()
+  const [password, setPassword] = useState()
+  const navigate =useNavigate();
+  const handleSubmit=(e)=>{
+    e.preventDefault()
+    createUser(email,password,navigate)
+    console.log(email,password);
+  }
   return (
     <div className="loginContainer">
       <React.Fragment>
         <CssBaseline />
         <Container maxWidth="sm">
-          <Box className="loginBox">
+          <form onSubmit={handleSubmit}>
+
+            <Box className="loginBox">
             <img src={blokicon} alt="blokicon" className="blockIcon" />
             <h2  >── REGISTER ──</h2>
             <div className="loginTextField">
@@ -24,6 +37,7 @@ export default function SimpleContainer() {
                 variant="outlined"
                 type="email"
                 required
+                onChange={(e) => setEmail(e.target.value)}
               />
               <TextField
                 id="outlined-basic"
@@ -31,10 +45,11 @@ export default function SimpleContainer() {
                 variant="outlined"
                 type="password"
                 required
+                onChange={(e) => setPassword(e.target.value)}
               />
             </div>
             <div className="loginButtons" >
-              <Button variant="contained">REGISTER</Button>
+              <Button variant="contained" type="submit" >REGISTER</Button>
               <Button variant="text">
                 With
                 <span>
@@ -43,7 +58,9 @@ export default function SimpleContainer() {
                 </span>
               </Button>
             </div>
+
           </Box>
+          </form>
         </Container>
       </React.Fragment>
     </div>

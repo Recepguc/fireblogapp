@@ -7,13 +7,25 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import google from "../assets/google.png";
 import "./LoginRegister.css"
+import { signIn } from "../helpers/Firebase";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 export default function SimpleContainer() {
+  const [email, setEmail] = useState()
+  const [password, setPassword] = useState()
+  const navigate =useNavigate();
+  const handleSubmit=(e)=>{
+    e.preventDefault()
+    signIn(email,password,navigate)
+    console.log(email,password);
+  }
   return (
     <div className="loginContainer">
       <React.Fragment>
         <CssBaseline />
         <Container maxWidth="sm">
+        <form onSubmit={handleSubmit}>
           <Box className="loginBox">
             <img src={blokicon} alt="blokicon" className="blockIcon" />
             <h2  >── LOGIN ──</h2>
@@ -24,6 +36,7 @@ export default function SimpleContainer() {
                 variant="outlined"
                 type="email"
                 required
+                onChange={(e) => setEmail(e.target.value)}
               />
               <TextField
                 id="outlined-basic"
@@ -31,10 +44,11 @@ export default function SimpleContainer() {
                 variant="outlined"
                 type="password"
                 required
+                onChange={(e) => setPassword(e.target.value)}
               />
             </div>
             <div className="loginButtons" >
-              <Button variant="contained">LOGIN</Button>
+              <Button variant="contained" type="submit" >LOGIN</Button>
               <Button variant="text">
                 With
                 <span>
@@ -44,6 +58,7 @@ export default function SimpleContainer() {
               </Button>
             </div>
           </Box>
+          </form>
         </Container>
       </React.Fragment>
     </div>
