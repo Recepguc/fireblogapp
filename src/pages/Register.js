@@ -8,13 +8,18 @@ import Button from "@mui/material/Button";
 import google from "../assets/google.png";
 import "./LoginRegister.css"
 import  {useState} from "react";
-import { createUser } from "../helpers/Firebase";
+import { createUser, signUpProvider } from "../helpers/Firebase";
 import { useNavigate } from "react-router-dom";
 
 export default function SimpleContainer() {
   const [email, setEmail] = useState()
   const [password, setPassword] = useState()
   const navigate =useNavigate();
+
+  const handleProviderRegister=()=>{
+    signUpProvider(navigate)
+  }
+  
   const handleSubmit=(e)=>{
     e.preventDefault()
     createUser(email,password,navigate)
@@ -50,7 +55,7 @@ export default function SimpleContainer() {
             </div>
             <div className="loginButtons" >
               <Button variant="contained" type="submit" >REGISTER</Button>
-              <Button variant="text">
+              <Button variant="text"  onClick={handleProviderRegister}>
                 With
                 <span>
                   

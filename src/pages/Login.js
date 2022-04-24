@@ -7,7 +7,7 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import google from "../assets/google.png";
 import "./LoginRegister.css"
-import { signIn } from "../helpers/Firebase";
+import { signIn, signUpProvider } from "../helpers/Firebase";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
@@ -19,6 +19,9 @@ export default function SimpleContainer() {
     e.preventDefault()
     signIn(email,password,navigate)
     console.log(email,password);
+  }
+  const handleProviderLogin=()=>{
+    signUpProvider(navigate)
   }
   return (
     <div className="loginContainer">
@@ -49,7 +52,7 @@ export default function SimpleContainer() {
             </div>
             <div className="loginButtons" >
               <Button variant="contained" type="submit" >LOGIN</Button>
-              <Button variant="text">
+              <Button variant="text" onClick={handleProviderLogin}>
                 With
                 <span>
                   

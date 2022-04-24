@@ -1,19 +1,27 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, onAuthStateChanged, signOut} from "firebase/auth";
+import { getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup, signOut} from "firebase/auth";
 import { createUserWithEmailAndPassword,signInWithEmailAndPassword} from "firebase/auth";
-import { useNavigate } from "react-router-dom";
+
 
 
 // TODO: Replace the following with your app's Firebase project configuration
 // See: https://firebase.google.com/docs/web/learn-more#config-object
+// const firebaseConfig = {
+//     // apiKey: "AIzaSyA70KQVNpdnPdvuCzt1PZ4V-ueT3Ho6dSU",
+//     // authDomain: "blog-page-3d264.firebaseapp.com",
+//     // projectId: "blog-page-3d264",
+//     // storageBucket: "blog-page-3d264.appspot.com",
+//     // messagingSenderId: "117452135644",
+//     // appId: "1:117452135644:web:c27e538f06885b8b7ba819"
+//   };
 const firebaseConfig = {
-    apiKey: "AIzaSyA70KQVNpdnPdvuCzt1PZ4V-ueT3Ho6dSU",
-    authDomain: "blog-page-3d264.firebaseapp.com",
-    projectId: "blog-page-3d264",
-    storageBucket: "blog-page-3d264.appspot.com",
-    messagingSenderId: "117452135644",
-    appId: "1:117452135644:web:c27e538f06885b8b7ba819"
-  };
+  apiKey: process.env.REACT_APP_apiKey,
+  authDomain: process.env.REACT_APP_authDomain,
+  projectId:process.env.REACT_APP_projectId ,
+  storageBucket:process.env.REACT_APP_storageBucket ,
+  messagingSenderId:process.env.REACT_APP_messagingSenderId ,
+  appId:process.env.REACT_APP_appId
+};
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
@@ -58,17 +66,26 @@ export const logOut=()=>{
     alert("Log out sucses")
 }
 
-export const userObserver = ()=>{
-    
-}
-onAuthStateChanged(auth, (user) => {
-    if (user) {
-      // User is signed in, see docs for a list of available properties
-      // https://firebase.google.com/docs/reference/js/firebase.User
-      const uid = user.uid;
-      // ...
+
+export const userObserver = (setCurrentUser) => {
+  onAuthStateChanged(auth, (currentUser) => {
+    if (currentUser) {
+      setCurrentUser(currentUser);
     } else {
-      // User is signed out
-      // ...
+      setCurrentUser(false);
     }
   });
+};
+
+export const signUpProvider = (navigate) => {
+  const provider = new GoogleAuthProvider();
+
+  signInWithPopup(auth, provider)
+    .then((result) => {
+      console.log(result);
+      navigate("/")
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
