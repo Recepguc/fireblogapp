@@ -5,35 +5,30 @@ import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
-import MenuIcon from "@mui/icons-material/Menu";
+
 import Container from "@mui/material/Container";
-import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
+
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import { textAlign } from "@mui/system";
+
 import claruswaylogo from "../assets/cw.jpeg";
 import { useNavigate } from "react-router-dom";
 import { logOut } from "../helpers/Firebase";
+import { useContext } from "react";
+import { AuthContext } from "../contexts/AutContext";
 
 const page = ["<Recep/>"];
 
 const Navbar = () => {
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-  const currentUser = true;
+
+  const { currentUser } = useContext(AuthContext);
+  // const currentUser = true;
   const navigate = useNavigate();
 
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
-  };
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
-  };
-
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
   };
 
   const handleCloseUserMenu = () => {
@@ -95,7 +90,7 @@ const Navbar = () => {
                 <>
                   <MenuItem
                     onClick={() => {
-                      navigate("/profil");
+                      navigate("/profile");
                       setAnchorElUser(null);
                     }}
                   >
@@ -117,7 +112,7 @@ const Navbar = () => {
                     }}
                   >
                     <Typography textAlign="center">Logout</Typography>
-                  </MenuItem>{" "}
+                  </MenuItem>
                 </>
               ) : (
                 <>
