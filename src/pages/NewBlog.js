@@ -7,28 +7,28 @@ import BlogIcon from "../assets/blok.png";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import googleLogo from "../assets/google.png";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router";
 import { BlogContext } from "../contexts/BlogContext";
 // import { signIn, signUpProvider } from "../helpers/firebase";
 // import { blueGrey } from "@mui/material/colors";
 // import { createTheme } from "@mui/material/styles";
-const initialValues={title:"",imageUrl:"",content:""}
+const initialValues = { title: "", imageURL: "", content: "" };
 export default function NewBlog() {
-  
   const navigate = useNavigate();
-  const [info, setInfo] = useState(initialValues)
+  const { AddBlog } = useContext(BlogContext);
+  const [info, setInfo] = useState(initialValues);
 
-  
   const handleSubmit = (e) => {
     e.preventDefault();
+    AddBlog(info);
+    navigate("/");
   };
-  const handleChange=(e)=>{
-      e.preventDefault();
-      const {name,value}=e.target
-      setInfo({...info, [name]:value})
-
-  }
+  const handleChange = (e) => {
+    e.preventDefault();
+    const { name, value } = e.target;
+    setInfo({ ...info, [name]: value });
+  };
   return (
     <div className="login-container">
       <React.Fragment>
@@ -41,7 +41,7 @@ export default function NewBlog() {
 
               <div className="login-textfields">
                 <TextField
-                name="title"
+                  name="title"
                   type="text"
                   id="outlined-basic"
                   label="Title"
@@ -51,7 +51,7 @@ export default function NewBlog() {
                 />
 
                 <TextField
-                  name="imageUrl"
+                  name="imageURL"
                   type="url"
                   id="outlined-basic2"
                   label="Image URL"
@@ -60,7 +60,7 @@ export default function NewBlog() {
                   onChange={handleChange}
                 />
                 <TextField
-                name="content"
+                  name="content"
                   multiline
                   minRows={8}
                   id="outlined-basic2"

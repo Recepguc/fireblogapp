@@ -2,7 +2,7 @@
 
 import { getDatabase, ref, set, push, onValue } from "firebase/database";
 import { createContext, useState, useEffect, useContext } from "react";
-import { AuthContext } from "./AuthContext";
+import { AuthContext } from "../contexts/AutContext";
 
 export const BlogContext = createContext();
 

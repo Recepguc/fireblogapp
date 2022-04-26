@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import BlogCard from "../compenents/BlogCard";
+import { BlogContext } from "../contexts/BlogContext";
 import "./Dashboard.css";
+import Loading from "../assets/loading.gif";
 
 const Dashboard = () => {
+  const { BlogFetch } = useContext(BlogContext);
+  const { blogList, isLoading } = BlogFetch();
   return (
     <div>
       <h1 className="dash-text">──── Dashboard ────</h1>
@@ -15,8 +19,15 @@ const Dashboard = () => {
           justifyContent: "center",
         }}
       >
-        <BlogCard style={{ margin: "auto" }} />
-        <BlogCard style={{ margin: "auto" }} />
+        {isLoading ? (
+          <img src={Loading} alt="loading" />
+        ) : (
+          <>
+            {blogList?.map((item, index) => (
+              <BlogCard item={item} key={index} />
+            ))}
+          </>
+        )}
       </div>
     </div>
   );
