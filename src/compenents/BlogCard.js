@@ -10,7 +10,7 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import { useContext } from "react";
-import { AuthContext } from "../context/AuthContext";
+import { AuthContext } from "../contexts/AutContext";
 
 export default function BlogCard() {
   const { currentUser } = useContext(AuthContext);
