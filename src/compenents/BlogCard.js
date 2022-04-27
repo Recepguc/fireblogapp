@@ -9,13 +9,10 @@ import Typography from "@mui/material/Typography";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
-import { useContext } from "react";
-import { AuthContext } from "../contexts/AutContext";
+
 import { useNavigate } from "react-router-dom";
 
 export default function BlogCard({ item, index }) {
-  const { currentUser } = useContext(AuthContext);
-
   const [likeNumber, setLikeNumber] = useState(0);
   const [likeColor, setLikeColor] = useState();
   const [click, setClick] = useState(true);

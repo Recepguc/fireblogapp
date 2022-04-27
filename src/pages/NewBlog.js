@@ -6,7 +6,7 @@ import "./LoginRegister.css";
 import BlogIcon from "../assets/blok.png";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import googleLogo from "../assets/google.png";
+
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router";
 import { BlogContext } from "../contexts/BlogContext";
