@@ -6,10 +6,9 @@ import { AuthContext } from "../contexts/AutContext";
 
 export const BlogContext = createContext();
 
-const d=new Date()
-const time=d.toLocaleDateString()
+const d = new Date();
+const time = d.toLocaleDateString();
 console.log(time);
-
 
 const BlogContextProvider = ({ children }) => {
   const { currentUser } = useContext(AuthContext);
@@ -25,7 +24,6 @@ const BlogContextProvider = ({ children }) => {
       content: info.content,
       author: currentUser.email,
       date: time,
- 
     });
   };
   //!Call Blog
