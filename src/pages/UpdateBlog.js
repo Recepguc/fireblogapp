@@ -10,20 +10,30 @@ import Button from "@mui/material/Button";
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router";
 import { BlogContext } from "../contexts/BlogContext";
+import { useLocation } from "react-router-dom";
 // import { signIn, signUpProvider } from "../helpers/firebase";
 // import { blueGrey } from "@mui/material/colors";
 // import { createTheme } from "@mui/material/styles";
-const initialValues = { title: "", imageURL: "", content: "" };
-export default function NewBlog() {
+
+export default function UpdateBlog() {
   const navigate = useNavigate();
-  const { AddBlog } = useContext(BlogContext);
+  const location = useLocation();
+  const item = location.state.item;
+
+  const initialValues = { ...item };
+
+  const { EditBlog } = useContext(BlogContext);
   const [info, setInfo] = useState(initialValues);
 
-  const handleSubmit = (e) => {
+  const UpdateBlog = (e) => {
     e.preventDefault();
-    AddBlog(info);
-    navigate("/");
+    EditBlog(info);
+    const item = info;
+    navigate("/details", { state: { item } });
+
+    // Toastify(`${info.title} updated Successfully`);
   };
+
   const handleChange = (e) => {
     e.preventDefault();
     const { name, value } = e.target;
@@ -34,10 +44,10 @@ export default function NewBlog() {
       <React.Fragment>
         <CssBaseline />
         <Container maxWidth="sm">
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={UpdateBlog}>
             <Box className="login-box">
               <img className="blog-icon" src={BlogIcon} alt="blog_icon" />
-              <h2>── NEW BLOG ──</h2>
+              <h2>──UPDATE {info.title} ──</h2>
 
               <div className="login-textfields">
                 <TextField
@@ -46,6 +56,7 @@ export default function NewBlog() {
                   id="outlined-basic"
                   label="Title"
                   variant="outlined"
+                  value={info.title}
                   required
                   onChange={handleChange}
                 />
@@ -56,6 +67,7 @@ export default function NewBlog() {
                   id="outlined-basic2"
                   label="Image URL"
                   variant="outlined"
+                  value={info.imageURL}
                   required
                   onChange={handleChange}
                 />
@@ -66,6 +78,7 @@ export default function NewBlog() {
                   id="outlined-basic2"
                   label="Content"
                   variant="outlined"
+                  value={info.content}
                   required
                   onChange={handleChange}
                 />
