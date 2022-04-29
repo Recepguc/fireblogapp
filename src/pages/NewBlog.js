@@ -1,8 +1,8 @@
 import * as React from "react";
-import CssBaseline from "@mui/material/CssBaseline";
+
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
-import "./LoginRegister.css";
+import "./Blog.css";
 import BlogIcon from "../assets/blok.png";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
@@ -29,57 +29,62 @@ export default function NewBlog() {
     const { name, value } = e.target;
     setInfo({ ...info, [name]: value });
   };
+
   return (
     <div className="login-container">
-      <React.Fragment>
-        <CssBaseline />
-        <Container maxWidth="sm">
-          <form onSubmit={handleSubmit}>
-            <Box className="login-box">
-              <img className="blog-icon" src={BlogIcon} alt="blog_icon" />
-              <h2>── NEW BLOG ──</h2>
+      <Container className="container" maxWidth="xs">
+        <form onSubmit={handleSubmit}>
+          <Box className="login-box">
+            <img className="blog-icon" src={BlogIcon} alt="blog_icon" />
+            <h2>── NEW BLOG ──</h2>
 
-              <div className="login-textfields">
-                <TextField
-                  name="title"
-                  type="text"
-                  id="outlined-basic"
-                  label="Title"
-                  variant="outlined"
-                  required
-                  onChange={handleChange}
-                />
+            <div className="login-textfields">
+              <TextField
+                style={{ marginTop: "1rem" }}
+                name="title"
+                type="text"
+                id="outlined-basic"
+                label="Title"
+                variant="outlined"
+                required
+                onChange={handleChange}
+              />
 
-                <TextField
-                  name="imageURL"
-                  type="url"
-                  id="outlined-basic2"
-                  label="Image URL"
-                  variant="outlined"
-                  required
-                  onChange={handleChange}
-                />
-                <TextField
-                  name="content"
-                  multiline
-                  minRows={8}
-                  id="outlined-basic2"
-                  label="Content"
-                  variant="outlined"
-                  required
-                  onChange={handleChange}
-                />
-              </div>
-              <div className="login-buttons">
-                {/* buttonlara hover ve background color eklenmeli */}
-                <Button type="submit" variant="contained">
-                  SUBMIT
-                </Button>
-              </div>
-            </Box>
-          </form>
-        </Container>
-      </React.Fragment>
+              <TextField
+                style={{ marginTop: "1rem" }}
+                name="imageURL"
+                type="url"
+                id="outlined-basic"
+                label="Image URL"
+                variant="outlined"
+                required
+                onChange={handleChange}
+              />
+              <TextField
+                style={{ marginTop: "1rem" }}
+                name="content"
+                multiline
+                minRows={8}
+                id="outlined-basic"
+                label="Content"
+                variant="outlined"
+                required
+                onChange={handleChange}
+              />
+            </div>
+            <div className="login-buttons">
+              {/* buttonlara hover ve background color eklenmeli */}
+              <Button
+                type="submit"
+                variant="contained"
+                style={{ marginTop: "1rem" }}
+              >
+                SUBMIT
+              </Button>
+            </div>
+          </Box>
+        </form>
+      </Container>
     </div>
   );
 }
