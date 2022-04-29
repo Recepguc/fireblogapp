@@ -26,6 +26,9 @@ const Details = () => {
     DeleteBlog(id);
     navigate("/");
   };
+  const UpdateBlog = () => {
+    navigate("/updateblog", { state: { item } });
+  };
 
   ///like make red and +1 function
   const handleLike = () => {
@@ -128,7 +131,9 @@ const Details = () => {
 
           {currentUser.email === item.author ? (
             <>
-              <Button variant="contained">UPDATE</Button>
+              <Button variant="contained" onClick={() => UpdateBlog(item.id)}>
+                UPDATE
+              </Button>
               <Button
                 sx={{ backgroundColor: "red" }}
                 variant="contained"
