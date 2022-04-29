@@ -7,6 +7,7 @@ import {
   push,
   onValue,
   remove,
+  update,
 } from "firebase/database";
 import { createContext, useState, useEffect, useContext } from "react";
 import { AuthContext } from "../contexts/AutContext";
@@ -56,13 +57,22 @@ const BlogContextProvider = ({ children }) => {
     }, []);
     return { isLoading, blogList };
   };
+  // Delete Blog
   const DeleteBlog = (id) => {
     const database = getDatabase();
-    const blogRef = ref(database, "BlogPage");
+
     remove(ref(database, "BlogPage/" + id));
   };
+  //Edit Blog
+  const EditBlog = (info) => {
+    const database = getDatabase();
+    const updates = {};
+
+    updates["BlogPage/" + info.id] = info;
+    return update(ref(database), updates);
+  };
   return (
-    <BlogContext.Provider value={{ BlogFetch, AddBlog, DeleteBlog }}>
+    <BlogContext.Provider value={{ BlogFetch, AddBlog, DeleteBlog, EditBlog }}>
       {children}
     </BlogContext.Provider>
   );
