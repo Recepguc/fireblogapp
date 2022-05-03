@@ -7,9 +7,11 @@ import BlogIcon from "../assets/blok.png";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 
+import "react-toastify/dist/ReactToastify.css";
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router";
 import { BlogContext } from "../contexts/BlogContext";
+import ToastNotify from "../helpers/ToastNotify";
 // import { signIn, signUpProvider } from "../helpers/firebase";
 // import { blueGrey } from "@mui/material/colors";
 // import { createTheme } from "@mui/material/styles";
@@ -23,6 +25,7 @@ export default function NewBlog() {
     e.preventDefault();
     AddBlog(info);
     navigate("/");
+    ToastNotify(`${info.title} Added Successfully`);
   };
   const handleChange = (e) => {
     e.preventDefault();
@@ -61,12 +64,15 @@ export default function NewBlog() {
                 onChange={handleChange}
               />
               <TextField
-                style={{ marginTop: "1rem" }}
+                style={{
+                  marginTop: "1rem",
+                }}
                 name="content"
                 multiline
                 minRows={8}
-                id="outlined-basic"
-                label="Content"
+                maxRows={10}
+                id="filled-multiline-static"
+                label="multiline"
                 variant="outlined"
                 required
                 onChange={handleChange}
