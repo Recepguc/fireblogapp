@@ -13,6 +13,7 @@ import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import Button from "@mui/material/Button";
 import { AuthContext } from "../contexts/AutContext";
 import { BlogContext } from "../contexts/BlogContext";
+import ToastNotify from "../helpers/ToastNotify";
 
 const Details = () => {
   const [likeNumber, setLikeNumber] = useState(0);
@@ -25,6 +26,7 @@ const Details = () => {
   const DeletePage = (id) => {
     DeleteBlog(id);
     navigate("/");
+    ToastNotify(`${item.title} Deleted Successfully`);
   };
   const UpdateBlog = () => {
     navigate("/updateblog", { state: { item } });
