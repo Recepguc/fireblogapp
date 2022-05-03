@@ -11,6 +11,7 @@ import { useState, useContext } from "react";
 import { useNavigate } from "react-router";
 import { BlogContext } from "../contexts/BlogContext";
 import { useLocation } from "react-router-dom";
+import ToastNotify from "../helpers/ToastNotify";
 // import { signIn, signUpProvider } from "../helpers/firebase";
 // import { blueGrey } from "@mui/material/colors";
 // import { createTheme } from "@mui/material/styles";
@@ -31,7 +32,7 @@ export default function UpdateBlog() {
     const item = info;
     navigate("/details", { state: { item } });
 
-    // Toastify(`${info.title} updated Successfully`);
+    ToastNotify(`${info.title} updated Successfully`);
   };
 
   const handleChange = (e) => {
