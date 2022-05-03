@@ -17,6 +17,7 @@ import { useNavigate } from "react-router-dom";
 import { logOut } from "../helpers/Firebase";
 import { useContext } from "react";
 import { AuthContext } from "../contexts/AutContext";
+import ToastNotify from "../helpers/ToastNotify";
 
 const page = ["<Recep/>"];
 
@@ -109,6 +110,7 @@ const Navbar = () => {
                       logOut();
                       navigate("/");
                       setAnchorElUser(null);
+                      ToastNotify(` Logout Success`);
                     }}
                   >
                     <Typography textAlign="center">Logout</Typography>
