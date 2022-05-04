@@ -6,7 +6,7 @@ import Button from "@mui/material/Button";
 import google from "../assets/google.png";
 import "./LoginRegister.css";
 import { signIn, signUpProvider } from "../helpers/Firebase";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import { AuthContext } from "../contexts/AutContext";
 import ToastNotify from "../helpers/ToastNotify";
@@ -51,7 +51,7 @@ export default function SimpleContainer() {
               />
             </div>
             <p style={{ fontsize: "large" }}>
-              For Register click <a href="/register">here</a>
+              For Register click <Link to="/register">here</Link>
             </p>
             <div className="loginButtons">
               <Button variant="contained" type="submit">
