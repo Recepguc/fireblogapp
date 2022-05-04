@@ -50,6 +50,9 @@ export default function SimpleContainer() {
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
+            <p style={{ fontsize: "large" }}>
+              For Register click <a href="/register">here</a>
+            </p>
             <div className="loginButtons">
               <Button variant="contained" type="submit">
                 LOGIN
