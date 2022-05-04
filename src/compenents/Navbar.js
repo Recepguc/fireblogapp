@@ -12,7 +12,7 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
-import claruswaylogo from "../assets/cw.jpeg";
+import logo from "../assets/images.png";
 import { useNavigate } from "react-router-dom";
 import { logOut } from "../helpers/Firebase";
 import { useContext } from "react";
@@ -45,8 +45,9 @@ const Navbar = () => {
             noWrap
             component="div"
             sx={{ mr: 2, display: { xs: "flex" } }}
+            onClick={() => navigate("/")}
           >
-            <img src={claruswaylogo} alt="clglogo" width="50px" height="50px" />
+            <img src={logo} alt="clglogo" width="50px" height="50px" />
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}></Box>
@@ -61,6 +62,11 @@ const Navbar = () => {
           >
             <h1>──── {page}Blog ──── </h1>
           </Box>
+          <span>
+            {currentUser?.displayName
+              ? currentUser?.displayName
+              : currentUser?.email}
+          </span>
           {/* Profil ikonu */}
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
@@ -108,7 +114,7 @@ const Navbar = () => {
                   <MenuItem
                     onClick={() => {
                       logOut();
-                      navigate("/");
+                      navigate("/login");
                       setAnchorElUser(null);
                       ToastNotify(` Logout Success`);
                     }}
