@@ -60,7 +60,7 @@ const Details = () => {
       <Card
         sx={{
           width: 600,
-          height: 800,
+          height: 1200,
         }}
       >
         <div>
