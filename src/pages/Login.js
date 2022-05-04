@@ -51,8 +51,7 @@ export default function SimpleContainer() {
               />
             </div>
             <p style={{ fontsize: "large" }}>
-              For Register click{" "}
-              <a href="https://recepguc.github.io/register">here</a>
+              For Register click <a href="/register">here</a>
             </p>
             <div className="loginButtons">
               <Button variant="contained" type="submit">
